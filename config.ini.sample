@@ -1,0 +1,13 @@
+[data]
+url = https://opendata.ecdc.europa.eu/covid19/casedistribution/json/
+
+[influx]
+hostname = influxserver
+port = 8086
+username = corona
+password = c0r0n4
+database = corona
+measurement = covid
+
+[log]
+file = test.log
