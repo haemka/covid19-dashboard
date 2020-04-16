@@ -34,7 +34,9 @@ class Importer:
             oldest=sorted(dates)[0],
             newest=sorted(dates)[-1]
         )
-        self.logger.info("Parsed {} datasets total, ranging from {} to {}.".format(self.stats['total_datasets'], self.stats['oldest'], self.stats['newest']))
+        self.logger.info("Parsed {} datasets total, ranging from {} to {}.".format(self.stats['total_datasets'],
+                                                                                   self.stats['oldest'],
+                                                                                   self.stats['newest']))
 
     def dump_data(self):
         print(json.dumps(self.data, indent=2))

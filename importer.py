@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 """Script to Import COVID-19 statistics into InfluxDB."""
-from CovidData import Importers, Exporters
-import logging
 import configparser
+import logging
 import urllib.parse
+
+from CovidData import Importers, Exporters
 
 
 def main():
