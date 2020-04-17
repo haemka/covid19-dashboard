@@ -6,12 +6,11 @@ import influxdb
 class InfluxDB:
     def __init__(self, config, logger=None):
         self.logger = logger
-        self.host = config['influx']['hostname']
-        self.port = config['influx']['port']
-        self.user = config['influx']['username']
-        self.passwd = config['influx']['password']
-        self.db = config['influx']['database']
-        self.m = config['influx']['measurement']
+        self.host = config['hostname']
+        self.port = config['port']
+        self.user = config['username']
+        self.passwd = config['password']
+        self.db = config['database']
 
     def push(self, data):
         if self.logger:

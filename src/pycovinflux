@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+"""Script to Import COVID-19 statistics into InfluxDB."""
+import os
+import sys
+import argparse
+import covinflux
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--debug", help="Enable debug logging",
+                        dest='debug', action='store_true')
+    parser.add_argument("-v", "--verbose", help="Increase verbosity",
+                        dest='verbose', action='store_true')
+    parser.add_argument("-c", "--config", dest='configpath',
+                        default=sys.prefix+'/conf/covinflux.conf',
+                        help="Configuration file path")
+    args = parser.parse_args()
+
+    covinflux.run(args.configpath, args.verbose, args.debug)
+
+
+if __name__ == "__main__":
+    main()
