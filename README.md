@@ -42,13 +42,18 @@ Currently supported modules are:
 | ECDC | Data from the [European Centre for Disease Prevention and Control](https://www.ecdc.europa.eu/en) |  [Link](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) |
 | RKI | Data from the [Robert Koch Institute](https://www.rki.de/EN/Home/homepage_node.html) | [Link](https://hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0) |
 
-## Parameters
+## Execute
+
+Just run `pycovinflux` within your venv.
+
+### Parameters
 
 | Parameter | Description |
 |---|---|
 | `-c CONFIGPATH` `--config CONFIGPATH` | Allows you to specify a non standard path to your config file |
 | `-v` `--verbose` | Increases verbosity of the shell output |
-| `-d` `-d` | Enables debug logging |
+| `-d` `--debug` | Enables debug logging |
+| `-h` `--help` | Show help |
 
 ## Dashboard
 
