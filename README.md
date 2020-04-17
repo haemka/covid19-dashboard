@@ -1,4 +1,4 @@
-# ECDC COVID-19 Data Importer for InfluxDB
+# COVID-19 Data Importer for InfluxDB
 
 Imports COVID-19 data from the open data portals of various sources into
 InfluxDB. The script may be called via a cronjob to regularly import the data.
