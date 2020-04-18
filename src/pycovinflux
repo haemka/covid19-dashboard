@@ -14,11 +14,13 @@ def main():
     parser.add_argument("-v", "--verbose", help="Increase verbosity",
                         dest='verbose', action='store_true')
     parser.add_argument("-c", "--config", dest='configpath',
-                        default=sys.prefix+'/conf/covinflux.conf',
+                        default=os.path.join(sys.prefix, 'conf/covinflux.conf'),
                         help="Configuration file path")
+    parser.add_argument("-l", "--log", dest='logpath',
+                        help="Log file path (overrides configuration value)")
     args = parser.parse_args()
 
-    covinflux.run(args.configpath, args.verbose, args.debug)
+    covinflux.run(args.configpath, args.logpath, args.verbose, args.debug)
 
 
 if __name__ == "__main__":

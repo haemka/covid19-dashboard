@@ -17,8 +17,8 @@ class Importer:
         self.url = config['url']
         self.raw_data = dict()
         self.data = []
-        self.fetch_data()
         self.stats = dict()
+        self.fetch_data()
 
     def parse_data(self):
         pass
@@ -89,13 +89,6 @@ class RKI(Importer):
         self.measurement = config['measurement']
 
     @staticmethod
-    def calc_delta(case, new):
-        if int(new) in [-1, 1]:
-            return int(case)
-        else:
-            return 0
-
-    @staticmethod
     def parse_date(date):
         return datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%dT%H:%M:%SZ')
 
@@ -114,15 +107,9 @@ class RKI(Importer):
                                objectid=d['properties']['ObjectId']),
                            time=time,
                            fields=dict(
-                               cases=self.calc_delta(
-                                   d['properties']['AnzahlFall'],
-                                   d['properties']['NeuerFall']),
-                               deaths=self.calc_delta(
-                                   d['properties']['AnzahlTodesfall'],
-                                   d['properties']['NeuerTodesfall']),
-                               recovered=self.calc_delta(
-                                   d['properties']['AnzahlGenesen'],
-                                   d['properties']['NeuGenesen'])))
+                               cases=int(d['properties']['AnzahlFall']),
+                               deaths=int(d['properties']['AnzahlTodesfall']),
+                               recovered=int(d['properties']['AnzahlGenesen'])))
             self.data.append(dataset)
         self.calc_stats()
         self.logger.debug('{} entries parsed'.format(self.stats['total_datasets']))

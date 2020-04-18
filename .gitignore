@@ -236,4 +236,4 @@ tags
 # End of https://www.gitignore.io/api/vim,python,pycharm,venv
 
 **.log
-config.conf
+conf/covinflux.conf
