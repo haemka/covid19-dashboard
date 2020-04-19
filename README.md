@@ -64,10 +64,16 @@ Just run `pycovinflux` within your venv.
 
 ## Dashboard
 
-The example dashboard is [part of this repo](dashboard/grafana-dashboard.json).
+Example dashboards are part of this repo:
+- [ECDC dashboard](dashboard/grafana-ecdc-dashboard.json).
+- [RKI dashboard](dashboard/grafana-ecdc-dashboard.json).
 
-Currently this example only displays data from the ECDC module.
+### Screenshots
 
-### Screenshot
+#### ECDC
 
-![Example Screenshot](https://raw.githubusercontent.com/haemka/covid19-dashboard/master/screenshot.png)
+![ECDC Dashboard Screenshot](https://raw.githubusercontent.com/haemka/covid19-dashboard/master/ecdc-dashboard.png)
+
+#### RKI
+
+![ECDC Dashboard Screenshot](https://raw.githubusercontent.com/haemka/covid19-dashboard/master/rki-dashboard.png)
