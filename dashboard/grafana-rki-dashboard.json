@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.7.2"
+      "version": "7.0.3"
     },
     {
       "type": "panel",
@@ -33,11 +33,18 @@
       "id": "singlestat",
       "name": "Singlestat",
       "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
     }
   ],
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:7",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -52,7 +59,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1587217525808,
+  "iteration": 1592061893456,
   "links": [],
   "panels": [
     {
@@ -65,6 +72,12 @@
         "#A352CC"
       ],
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -79,16 +92,18 @@
         "x": 0,
         "y": 0
       },
-      "id": 8,
+      "id": 31,
       "interval": null,
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:2587",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:2588",
           "name": "range to text",
           "value": 2
         }
@@ -161,6 +176,7 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:2590",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -178,6 +194,12 @@
         "#FF780A"
       ],
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -198,10 +220,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:2587",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:2588",
           "name": "range to text",
           "value": 2
         }
@@ -280,6 +304,7 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:2590",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -297,6 +322,12 @@
         "#E02F44"
       ],
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -317,10 +348,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:2587",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:2588",
           "name": "range to text",
           "value": 2
         }
@@ -393,6 +426,7 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:2590",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -410,6 +444,12 @@
         "#56A64B"
       ],
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -430,10 +470,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:2587",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:2588",
           "name": "range to text",
           "value": 2
         }
@@ -506,6 +548,7 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:2590",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -514,20 +557,394 @@
       "valueName": "avg"
     },
     {
+      "cacheTimeout": null,
+      "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 4
+      },
+      "id": 8,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "showHeader": false,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "sum"
+          }
+        ]
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "district"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "rki",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "cases"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state",
+              "operator": "=~",
+              "value": "/^$state$/"
+            },
+            {
+              "condition": "AND",
+              "key": "district",
+              "operator": "=~",
+              "value": "/^$district$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Reported cases",
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 4
+      },
+      "id": 32,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "showHeader": false
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "district"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "rki",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "cases"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  " -(sum(deaths)+sum(recovered))"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state",
+              "operator": "=~",
+              "value": "/^$state$/"
+            },
+            {
+              "condition": "AND",
+              "key": "district",
+              "operator": "=~",
+              "value": "/^$district$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Active cases",
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 4
+      },
+      "id": 33,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "showHeader": false
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "district"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "rki",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "deaths"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state",
+              "operator": "=~",
+              "value": "/^$state$/"
+            },
+            {
+              "condition": "AND",
+              "key": "district",
+              "operator": "=~",
+              "value": "/^$district$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Reported deaths",
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 4
+      },
+      "id": 34,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "showHeader": false
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "district"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "rki",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "recovered"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state",
+              "operator": "=~",
+              "value": "/^$state$/"
+            },
+            {
+              "condition": "AND",
+              "key": "district",
+              "operator": "=~",
+              "value": "/^$district$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Reported recovered",
+      "transparent": true,
+      "type": "table"
+    },
+    {
       "aliasColors": {},
       "bars": true,
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
-      "decimals": 0,
+      "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 4
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 14,
@@ -559,6 +976,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:3870",
           "alias": "Total",
           "hiddenSeries": true
         }
@@ -631,7 +1049,7 @@
             },
             {
               "params": [
-                "0"
+                "previous"
               ],
               "type": "fill"
             }
@@ -694,8 +1112,9 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
-          "format": "short",
+          "$$hashKey": "object:981",
+          "decimals": null,
+          "format": "none",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -703,7 +1122,7 @@
           "show": true
         },
         {
-          "decimals": 0,
+          "$$hashKey": "object:982",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -724,14 +1143,20 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
-      "decimals": 0,
+      "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 4
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 17,
@@ -763,6 +1188,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:3870",
           "alias": "Total",
           "hiddenSeries": true
         }
@@ -841,7 +1267,7 @@
             },
             {
               "params": [
-                "0"
+                "previous"
               ],
               "type": "fill"
             }
@@ -910,8 +1336,9 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
-          "format": "short",
+          "$$hashKey": "object:981",
+          "decimals": null,
+          "format": "none",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -919,7 +1346,7 @@
           "show": true
         },
         {
-          "decimals": 0,
+          "$$hashKey": "object:982",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -940,14 +1367,20 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
-      "decimals": 0,
+      "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 4
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 16,
@@ -979,6 +1412,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:3870",
           "alias": "Total",
           "hiddenSeries": true
         }
@@ -1051,7 +1485,7 @@
             },
             {
               "params": [
-                "0"
+                "previous"
               ],
               "type": "fill"
             }
@@ -1114,8 +1548,9 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
-          "format": "short",
+          "$$hashKey": "object:981",
+          "decimals": null,
+          "format": "none",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1123,7 +1558,7 @@
           "show": true
         },
         {
-          "decimals": 0,
+          "$$hashKey": "object:982",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1145,13 +1580,19 @@
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 4
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 15,
@@ -1183,6 +1624,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:3870",
           "alias": "Total",
           "hiddenSeries": true
         }
@@ -1255,7 +1697,7 @@
             },
             {
               "params": [
-                "0"
+                "previous"
               ],
               "type": "fill"
             }
@@ -1318,8 +1760,9 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
-          "format": "short",
+          "$$hashKey": "object:981",
+          "decimals": null,
+          "format": "none",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1327,7 +1770,7 @@
           "show": true
         },
         {
-          "decimals": 0,
+          "$$hashKey": "object:982",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1347,14 +1790,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
-      "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 13,
         "w": 6,
         "x": 0,
-        "y": 12
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 2,
@@ -1456,7 +1904,7 @@
       },
       "yaxes": [
         {
-          "decimals": null,
+          "$$hashKey": "object:198",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1465,7 +1913,7 @@
           "show": true
         },
         {
-          "decimals": null,
+          "$$hashKey": "object:199",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1485,13 +1933,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 13,
         "w": 6,
         "x": 6,
-        "y": 12
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 18,
@@ -1599,6 +2053,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:198",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1607,6 +2062,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:199",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1626,13 +2082,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 13,
         "w": 6,
         "x": 12,
-        "y": 12
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 20,
@@ -1734,6 +2196,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:198",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1742,6 +2205,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:199",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1761,13 +2225,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 13,
         "w": 6,
         "x": 18,
-        "y": 12
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 21,
@@ -1869,6 +2339,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:198",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1877,6 +2348,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:199",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1896,13 +2368,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 13,
         "w": 6,
         "x": 0,
-        "y": 25
+        "y": 29
       },
       "hiddenSeries": false,
       "id": 13,
@@ -2016,6 +2494,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:198",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2024,6 +2503,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:199",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2043,13 +2523,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 13,
         "w": 6,
         "x": 6,
-        "y": 25
+        "y": 29
       },
       "hiddenSeries": false,
       "id": 19,
@@ -2169,6 +2655,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:198",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2177,6 +2664,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:199",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2196,13 +2684,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 13,
         "w": 6,
         "x": 12,
-        "y": 25
+        "y": 29
       },
       "hiddenSeries": false,
       "id": 22,
@@ -2316,6 +2810,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:198",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2324,6 +2819,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:199",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2343,13 +2839,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 13,
         "w": 6,
         "x": 18,
-        "y": 25
+        "y": 29
       },
       "hiddenSeries": false,
       "id": 23,
@@ -2463,6 +2965,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:198",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2471,6 +2974,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:199",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2490,13 +2994,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 38
+        "y": 42
       },
       "hiddenSeries": false,
       "id": 25,
@@ -2662,6 +3172,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:5023",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -2670,6 +3181,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:5024",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2689,13 +3201,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 38
+        "y": 42
       },
       "hiddenSeries": false,
       "id": 26,
@@ -2861,6 +3379,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:5023",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -2869,6 +3388,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:5024",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2888,13 +3408,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 50
+        "y": 54
       },
       "hiddenSeries": false,
       "id": 27,
@@ -3013,6 +3539,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:5023",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -3021,6 +3548,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:5024",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -3040,13 +3568,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB_CORONA}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 50
+        "y": 54
       },
       "hiddenSeries": false,
       "id": 28,
@@ -3165,6 +3699,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:5023",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -3173,6 +3708,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:5024",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -3187,7 +3723,7 @@
       }
     }
   ],
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [
     "influxdb",
@@ -3202,7 +3738,6 @@
         "definition": "SHOW TAG VALUES WITH KEY =\"state\"",
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": "State",
         "multi": true,
         "name": "state",
@@ -3225,7 +3760,6 @@
         "definition": "SHOW TAG VALUES WITH KEY = \"district\"  WHERE state =~ /$state/\n",
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": "District",
         "multi": true,
         "name": "district",
@@ -3258,8 +3792,5 @@
   "timezone": "",
   "title": "RKI COVID-19",
   "uid": "IqacKD3Zk",
-  "variables": {
-    "list": []
-  },
-  "version": 10
+  "version": 14
 }
