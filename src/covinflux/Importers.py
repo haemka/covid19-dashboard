@@ -87,32 +87,40 @@ class RKI(Importer):
     def __init__(self, config, logger=None):
         super().__init__(config, logger)
         self.measurement = config['measurement']
+        self.import_errors = 0
 
     @staticmethod
     def parse_date(date):
-        return datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%dT%H:%M:%SZ')
+        #return datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%dT%H:%M:%SZ')
+        return datetime.strptime(date, '%Y/%m/%d %H:%M:%S').strftime('%Y-%m-%dT%H:%M:%SZ')
 
     def parse(self):
         self.logger.info('Parsing data from {}'.format(self.url))
         for d in self.raw_data['features']:
-            time = self.parse_date(d['properties']['Refdatum'])
-            dataset = dict(measurement=self.measurement,
-                           tags=dict(
-                               stateid=d['properties']['IdBundesland'],
-                               state=d['properties']['Bundesland'],
-                               districtid=d['properties']['IdLandkreis'],
-                               district=d['properties']['Landkreis'],
-                               ageclass=d['properties']['Altersgruppe'],
-                               sex=d['properties']['Geschlecht'],
-                               objectid=d['properties']['ObjectId']),
-                           time=time,
-                           fields=dict(
-                               cases=int(d['properties']['AnzahlFall']),
-                               deaths=int(d['properties']['AnzahlTodesfall']),
-                               recovered=int(d['properties']['AnzahlGenesen'])))
-            self.data.append(dataset)
+            try:
+                time = self.parse_date(d['properties']['Refdatum'])
+                dataset = dict(measurement=self.measurement,
+                               tags=dict(
+                                   stateid=d['properties']['IdBundesland'],
+                                   state=d['properties']['Bundesland'],
+                                   districtid=d['properties']['IdLandkreis'],
+                                   district=d['properties']['Landkreis'],
+                                   ageclass=d['properties']['Altersgruppe'],
+                                   sex=d['properties']['Geschlecht'],
+                                   objectid=d['properties']['ObjectId']),
+                               time=time,
+                               fields=dict(
+                                   cases=int(d['properties']['AnzahlFall']),
+                                   deaths=int(d['properties']['AnzahlTodesfall']),
+                                   recovered=int(d['properties']['AnzahlGenesen'])))
+                self.data.append(dataset)
+            except ValueError as e:
+                self.import_errors = self.import_errors + 1
+                self.logger.warning('Error while parsing {}: {}'.format(d['properties']['FID'], e))
         self.calc_stats()
         self.logger.debug('{} entries parsed'.format(self.stats['total_datasets']))
+        if self.import_errors >= 1:
+            self.logger.warning('{} errors occured while parsing.'.format(self.import_errors))
 
 
 class Error(Exception):
