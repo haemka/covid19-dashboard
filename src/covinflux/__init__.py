@@ -32,8 +32,8 @@ def run(configpath, logpath=None, verbose=False, debug=False):
 
             try:
                 if any(e in ['enabled', 'true', 'yes']
-                       for m, e in config['modules'].items()):
-                    for m, e in config['modules'].items():
+                       for m, e in config.items('modules')):
+                    for m, e in config.items('modules'):
                         if config.getboolean('modules', m):
                             module = getattr(Importers, Importers.MODULES[m])
                             source = module(config[m + "_module"], logger)

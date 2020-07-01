@@ -76,8 +76,9 @@ class ECDC(Importer):
                            fields=dict(
                                cases=int(d['cases']),
                                deaths=int(d['deaths'])))
-            if d['popData2018']:
-                dataset['fields']['population'] = int(d['popData2018'])
+            for k in ('popData2018', 'popData2019'):
+                if k in d and d[k] is not None:
+                    dataset['fields']['population'] = int(d[k])
             self.data.append(dataset)
         self.calc_stats()
         self.logger.debug('{} entries parsed'.format(self.stats['total_datasets']))

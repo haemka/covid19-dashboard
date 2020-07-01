@@ -22,6 +22,6 @@ class InfluxDB:
                                              password=self.passwd,
                                              ssl=False)
             client.switch_database(self.db)
-            client.write_points(data, time_precision='s')
+            client.write_points(data, time_precision='s', batch_size=5000)
         except Exception as e:
-            self.logger.error("Pushing data into InfluxDB failes: {}".format(str(e)))
+            self.logger.error("Pushing data into InfluxDB failed: {}".format(str(e)))
